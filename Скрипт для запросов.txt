@@ -1,0 +1,30 @@
+SELECT Campaigns.Name, Campaigns.Duration, TargetAudiences.Name
+FROM Campaigns, TargetAudiences
+WHERE Campaigns.AudienceID = TargetAudiences.AudienceID;
+
+SELECT Employees.FullName, Positions.Name
+FROM Employees, Positions
+WHERE Employees.PositionID = Positions.PositionID;
+
+SELECT CampaignContent.ContentID,ContentFormats.Name
+FROM CampaignContent, ContentFormats
+WHERE CampaignContent.FormatID = ContentFormats.FormatID;
+
+SELECT PlacementPlatforms.Name, PromotionChannels.Name
+FROM PlacementPlatforms, PromotionChannels
+WHERE PlacementPlatforms.ChannelID = PromotionChannels.ChannelID;
+
+SELECT CampaignStatus.Name, COUNT(Campaigns.CampaignID)
+FROM CampaignStatus, Campaigns
+WHERE CampaignStatus.CampaignStatusID = Campaigns.CampaignStatusID
+GROUP BY CampaignStatus.Name;
+
+SELECT ActivityTypes.Name, COUNT(CampaignActivities.ActivityLogID)
+FROM ActivityTypes, CampaignActivities
+WHERE ActivityTypes.ActivityID = CampaignActivities.ActivityID
+GROUP BY ActivityTypes.Name;
+
+SELECT Metrics.Name, COUNT(CampaignEvaluation.EvaluationID), AVG(CampaignEvaluation.PlannedValue), AVG(CampaignEvaluation.ActualValue)
+FROM Metrics, CampaignEvaluation
+WHERE Metrics.MetricID = CampaignEvaluation.MetricID
+GROUP BY Metrics.Name;
