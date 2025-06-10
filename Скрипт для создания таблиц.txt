@@ -1,0 +1,159 @@
+-- Справочники
+CREATE TABLE ActivityTypes (
+    ActivityID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE ActivityStatus (
+    ActivityStatusID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE ContentFormats (
+    FormatID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE CampaignStatus (
+    CampaignStatusID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE PromotionChannels (
+    ChannelID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE PlacementPlatforms (
+    PlatformID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    ChannelID INT
+);
+
+CREATE TABLE TargetAudiences (
+    AudienceID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Campaigns (
+    CampaignID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Duration VARCHAR(50),
+    AudienceID INT,
+    ProgramID INT,
+    ActionID INT,
+    CampaignStatusID INT
+);
+
+CREATE TABLE Metrics (
+    MetricID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE ExpenseItems (
+    ItemID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE TargetActions (
+    ActionID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE EducationPrograms (
+    ProgramID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Positions (
+    PositionID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FullName VARCHAR(100),
+    PositionID INT
+);
+
+CREATE TABLE CampaignContent (
+    ContentID INT PRIMARY KEY,
+    FormatID INT,
+    CampaignID INT
+);
+
+-- Документы
+CREATE TABLE CampaignReschedules (
+    RescheduleID INT PRIMARY KEY,
+    Date DATE,
+    Reason VARCHAR(255),
+    NewDuration VARCHAR(50),
+    CampaignID INT
+);
+
+CREATE TABLE CampaignReports (
+    ReportID INT PRIMARY KEY,
+    Date DATE,
+    Description VARCHAR(255),
+    CampaignID INT
+);
+
+CREATE TABLE CampaignEvaluation (
+    EvaluationID INT PRIMARY KEY,
+    EvaluationDate DATE,
+    CampaignID INT,
+    PlannedValue DECIMAL(10,2),
+    ActualValue DECIMAL(10,2),
+    MetricID INT
+);
+
+CREATE TABLE CampaignActivities (
+    ActivityLogID INT PRIMARY KEY,
+    Date DATE,
+    ActivityID INT,
+    CampaignID INT,
+    ActivityStatusID INT
+);
+
+CREATE TABLE ContentApprovals (
+    ApprovalID INT PRIMARY KEY,
+    Date DATE,
+    ContentID INT,
+    Notes VARCHAR(255)
+);
+
+CREATE TABLE PlatformRegistrations (
+    PlatformRegistrationID INT PRIMARY KEY,
+    Date DATE,
+    PlatformID INT,
+    Login VARCHAR(100),
+    Password VARCHAR(100)
+);
+
+CREATE TABLE CampaignRegistrations (
+    RegistrationID INT PRIMARY KEY,
+    RegistrationDate DATE,
+    CampaignID INT,
+    EmployeeID INT,
+    PlatformID INT
+);
+
+CREATE TABLE CampaignSummaryActs (
+    SummaryActID INT PRIMARY KEY,
+    Date DATE,
+    Description VARCHAR(255),
+    CampaignID INT
+);
+
+CREATE TABLE ProgramRegistrations (
+    ProgramRegistrationID INT PRIMARY KEY,
+    Date DATE,
+    ProgramID INT
+);
+
+CREATE TABLE CampaignExpenses (
+    ExpenseID INT PRIMARY KEY,
+    Date DATE,
+    CampaignID INT,
+    ItemID INT
+);
